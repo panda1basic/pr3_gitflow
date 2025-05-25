@@ -23,6 +23,7 @@ def convert(amount: float, from_currency: str, to_currency: str) -> float:
     return rub_amount / RATES[to_currency]
 
 def main():
+    """CLI-интерфейс конвертера валют."""
     print("=== Currency Converter ===")
     print("Доступные валюты:", ', '.join(RATES.keys()))
     try:
@@ -31,7 +32,7 @@ def main():
         to_cur = input("В какую валюту (USD/EUR/RUB): ").strip()
         result = convert(amount, from_cur, to_cur)
         print(f"{amount:.2f} {from_cur.upper()} = {result:.2f} {to_cur.upper()}")
-    except Exception as ex:
+    except ValueError as ex:
         print("Ошибка:", ex)
 
 if __name__ == "__main__":
