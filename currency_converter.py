@@ -1,19 +1,19 @@
 from typing import Dict
 
-# Краткий набор курсов (можно обновить вручную)
+# Курсы на 25.05.2025
 RATES: Dict[str, float] = {
-    'USD': 91.0,    # 1 доллар = 91 рубль
-    'EUR': 98.0,    # 1 евро = 98 рублей
-    'RUB': 1.0      # 1 рубль = 1 рубль :)
+    'USD': 79.753,   # 1 USD = 79.753 RUB
+    'EUR': 91.299,  # 1 EUR = 91.299 RUB
+    'RUB': 1.0      # 1 RUB = 1 RUB
 }
 
 def convert(amount: float, from_currency: str, to_currency: str) -> float:
     """
     Конвертация валюты.
-    :param amount: Сумма
-    :param from_currency: Исходная валюта (USD/EUR/RUB)
-    :param to_currency: Целевая валюта (USD/EUR/RUB)
-    :return: Сумма в целевой валюте
+    :param amount: сумма
+    :param from_currency: исходная валюта (USD/EUR/RUB)
+    :param to_currency: целевая валюта (USD/EUR/RUB)
+    :return: сумма в целевой валюте
     """
     from_currency = from_currency.upper()
     to_currency = to_currency.upper()
@@ -23,17 +23,12 @@ def convert(amount: float, from_currency: str, to_currency: str) -> float:
     return rub_amount / RATES[to_currency]
 
 def main():
-    """CLI-интерфейс конвертера валют."""
-    print("=== Currency Converter ===")
-    print("Доступные валюты:", ', '.join(RATES.keys()))
-    try:
-        amount = float(input("Введите сумму: "))
-        from_cur = input("Из какой валюты (USD/EUR/RUB): ").strip()
-        to_cur = input("В какую валюту (USD/EUR/RUB): ").strip()
-        result = convert(amount, from_cur, to_cur)
-        print(f"{amount:.2f} {from_cur.upper()} = {result:.2f} {to_cur.upper()}")
-    except ValueError as ex:
-        print("Ошибка:", ex)
+    """
+    Главная точка входа модуля.
+    Просто выводит подсказку, что нужно запускать cli.py.
+    """
+    print("=== Currency Converter Module ===")
+    print("Используйте cli.py для интерактивного запуска.")
 
 if __name__ == "__main__":
     main()

@@ -1,34 +1,43 @@
 from currency_converter import convert
 
-def main():
-    """Запуск CLI."""
-    print("=== Currency Converter CLI ===")
-    print("Введите 'exit' или 'q' для выхода.\n")
-
+def run_converter():
+    """Запустить цикл конвертации."""
+    print("\n=== Конвертация валюты ===")
     while True:
-        # Ввод суммы или команды выхода
-        user_input = input("Сумма (или exit): ").strip().lower()
-        if user_input in ("exit", "q"):
-            print("Выход из программы. До встречи!")
-            break
+        user_input = input("Введите сумму (или 'back' для меню): ").strip().lower()
+        if user_input in ('back',):
+            return
 
-        # Проверяем, что введено число
         try:
             amount = float(user_input)
         except ValueError:
-            print("Неверный ввод. Введите число или 'exit' для выхода.\n")
+            print("Неверный ввод. Введите число или 'back' для возврата в меню.")
             continue
 
-        # Ввод валют
         src = input("Из (USD/EUR/RUB): ").strip().upper()
         dst = input("В (USD/EUR/RUB): ").strip().upper()
 
-        # Выполняем конвертацию
         try:
             result = convert(amount, src, dst)
             print(f"Результат: {result:.2f} {dst}\n")
         except ValueError as e:
             print(f"Ошибка: {e}\n")
+
+def main():
+    """Главное меню CLI."""
+    while True:
+        print("\n=== Currency Converter CLI ===")
+        print("1. Конвертировать валюту")
+        print("2. Завершить работу")
+        choice = input("Выберите пункт (1–2): ").strip()
+
+        if choice == '1':
+            run_converter()
+        elif choice == '2':
+            print("Выход из программы. До встречи!")
+            break
+        else:
+            print("Неверный выбор. Введите 1 или 2.")
 
 if __name__ == "__main__":
     main()
