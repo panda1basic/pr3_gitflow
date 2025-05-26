@@ -12,6 +12,7 @@
 9. Исключения — через try/except.
 10. Код с примером:
 
+
 ```python
 def convert(amount: float, from_currency: str, to_currency: str) -> float:
     """
